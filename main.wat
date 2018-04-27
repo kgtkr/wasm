@@ -7,6 +7,11 @@
     (local $b i32)
     (local $i i32)
     (local $tmp i32)
+    (i32.eq (get_local $n) (i32.const 0))
+    if
+      (i32.const 0)
+      return
+    end
     (set_local $a (i32.const 0))
     (set_local $b (i32.const 1))
     (set_local $i (i32.const 1))
