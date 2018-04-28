@@ -7,10 +7,28 @@
     (set_local $arr (call $arr_new (i32.const 3)))
 
     (call $arr_set (get_local $arr) (i32.const 1) (i32.const 20))
-    (call $println (call $arr_len (get_local $arr)))
-    (call $println (call $arr_get (get_local $arr) (i32.const 0)))
-    (call $println (call $arr_get (get_local $arr) (i32.const 1)))
-    (call $println (call $arr_get (get_local $arr) (i32.const 2)))
+    (call $arr_print (get_local $arr))
+  )
+  (func $arr_print (param $arr i32)
+    (local $i i32)
+    loop $loop
+      get_local $i
+      get_local $arr
+      call $arr_len
+      i32.lt_s
+      if
+        get_local $arr
+        get_local $i
+        call $arr_get
+        call $println
+
+        get_local $i
+        i32.const 1
+        i32.add
+        set_local $i
+        br $loop
+      end
+    end
   )
   (func $arr_len (param $arr i32) (result i32)
     get_local $arr
