@@ -1,5 +1,5 @@
 [package]
-name = "stdweb"
+name = "stdweb-test"
 version = "0.1.0"
 authors = ["tkr <kgtkr.jp@gmail.com>"]
 
