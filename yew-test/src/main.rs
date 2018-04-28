@@ -4,7 +4,9 @@ use yew::prelude::*;
 
 type Context = ();
 
-struct Model {}
+struct Model {
+    click: bool,
+}
 
 enum Msg {
     DoIt,
@@ -17,13 +19,13 @@ impl Component<Context> for Model {
     type Properties = ();
 
     fn create(_: Self::Properties, _: &mut Env<Context, Self>) -> Self {
-        Model {}
+        Model { click: false }
     }
 
     fn update(&mut self, msg: Self::Msg, _: &mut Env<Context, Self>) -> ShouldRender {
         match msg {
             Msg::DoIt => {
-                // Update your model on events
+                self.click = true;
                 true
             }
         }
@@ -33,8 +35,14 @@ impl Component<Context> for Model {
 impl Renderable<Context, Model> for Model {
     fn view(&self) -> Html<Context, Self> {
         html! {
-            // Render your model here
-            <button onclick=|_| Msg::DoIt,>{ "Click me!" }</button>
+            <>
+                <button onclick=|_| Msg::DoIt,>{ "Click me!" }</button>
+                {if self.click{
+                    "サンキュークリック"
+                }else{
+                    "クリックしてね"
+                }}
+            </>
         }
     }
 }
