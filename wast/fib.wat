@@ -25,25 +25,27 @@
     set_local $b
     i32.const 1
     set_local $i
-    (block $block (loop $loop
-      get_local $i
-      get_local $n
-      i32.ge_u
-      (br_if $block)
-        get_local $a
-        get_local $b
-        i32.add
-        set_local $tmp
-        get_local $b
-        set_local $a
-        get_local $tmp
-        set_local $b
+    block $block 
+      loop $loop
         get_local $i
-        i32.const 1
-        i32.add
-        set_local $i
-      (br $loop)
-    ))
+        get_local $n
+        i32.ge_u
+        br_if $block
+          get_local $a
+          get_local $b
+          i32.add
+          set_local $tmp
+          get_local $b
+          set_local $a
+          get_local $tmp
+          set_local $b
+          get_local $i
+          i32.const 1
+          i32.add
+          set_local $i
+        br $loop
+      end
+    end
     get_local $b
   )
 )
