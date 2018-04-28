@@ -25,12 +25,11 @@
     set_local $b
     i32.const 1
     set_local $i
-    block $block 
       loop $loop
         get_local $i
         get_local $n
-        i32.ge_u
-        br_if $block
+        i32.lt_s
+        if
           get_local $a
           get_local $b
           i32.add
@@ -43,9 +42,9 @@
           i32.const 1
           i32.add
           set_local $i
-        br $loop
+          br $loop
+        end
       end
-    end
     get_local $b
   )
 )
