@@ -12,8 +12,8 @@
     (local $b i32)
     (local $i i32)
     (local $tmp i32)
-    i32.const 0
     get_local $n
+    i32.const 0
     i32.eq
     if
       i32.const 0
@@ -26,9 +26,12 @@
     i32.const 1
     set_local $i
     (block $block (loop $loop
-      (br_if $block (i32.ge_u (get_local $i) (get_local $n)))
-        get_local $b
+      get_local $i
+      get_local $n
+      i32.ge_u
+      (br_if $block)
         get_local $a
+        get_local $b
         i32.add
         set_local $tmp
         get_local $b
