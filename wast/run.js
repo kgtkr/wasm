@@ -1,5 +1,6 @@
 const fs = require("fs");
 const child_process = require('child_process');
+const { StringDecoder } = require('string_decoder');
 
 const name = process.argv[2];
 child_process.execSync(`wat2wasm ${name}.wat`);
@@ -12,9 +13,9 @@ const inst = new WebAssembly.Instance(mod, {
       console.log(value);
     },
     printlnString: function (offset, length) {
-      const bytes = new Uint8Array(memory.buffer, offset, length);
-      const string = new TextDecoder('utf8').decode(bytes);
-      console.log(string);
+      const bytes = new Buffer(memory.buffer, offset, length);
+      const str = new StringDecoder('utf8').write(bytes);
+      console.log(str);
     },
   },
   js: {
