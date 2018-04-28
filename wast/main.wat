@@ -1,6 +1,10 @@
 (module
-  (func (export "main") (result i32)
+  (import "func" "println" (func $println (param i32)))
+  (import "func" "printlnString" (func $printlnString (param i32 i32)))
+  (import "js" "mem" (memory 1))
+  (func (export "main")
     (call $fib (i32.const 5))
+    (call $println)
   )
   (func $fib (param $n i32) (result i32)
     (local $a i32)
