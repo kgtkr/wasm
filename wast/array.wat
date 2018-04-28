@@ -13,12 +13,22 @@
   (func (export "main")
     (local $arr i32)
     (local $arr2 i32)
-    (set_local $arr (call $arr_new (i32.const 3)))
-    (call $arr_set (get_local $arr) (i32.const 1) (i32.const 20))
-    (set_local $arr2 (call $arr_map (get_local $arr) (i32.const 0)))
+    i32.const 3
+    call $arr_new
+    set_local $arr
+    get_local $arr
+    i32.const 1
+    i32.const 20
+    call $arr_set
+    get_local $arr
+    i32.const 0
+    call $arr_map
+    set_local $arr2
 
-    (call $arr_print (get_local $arr))
-    (call $arr_print (get_local $arr2))
+    get_local $arr
+    call $arr_print
+    get_local $arr2
+    call $arr_print
   )
   (func $arr_map (param $arr i32) (param $f i32) (result i32)
     (local $i i32)
