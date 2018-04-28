@@ -6,6 +6,6 @@
   (func (export "main")
     i32.const 0
     i32.const 12
-    (call $printlnString)
+    call $printlnString
   )
 )
